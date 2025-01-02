@@ -40,3 +40,21 @@
 .jumbotron {
   margin-bottom: 0;
 }
+
+.custom-jumbotron {
+  background-color: #e2e5e8; /* Light gray background */
+  padding: 50px; /* Add padding around the content */
+}
+
+.jumbotron-title {
+  font-size: 4rem; /* Larger font size for the title */
+  font-weight: bold; /* Make the title bold */
+  margin: 0; /* Remove default margins */
+}
+
+.jumbotron-subtitle {
+  font-size: 1.5rem; /* Larger font size for the subtitle */
+  color: #6c757d; /* Muted text color */
+  margin-top: 10px; /* Add space between the title and subtitle */
+}
+
