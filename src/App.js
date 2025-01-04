@@ -7,14 +7,11 @@ import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import LoginContext from './LoginContext'
 import Login from './components/Login'
+import AllBooks from './components/AllBooks'
+import Book from './components/Book'
 
 function App() {
   const [login, setLogin] = useState('')
-
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    token && setLogin(jwtDecode(token))
-  }, [])
 
   return (
     <>
@@ -23,8 +20,10 @@ function App() {
           <Jumbotron />
           <Navbar />
           <Routes>
-            <Route path="/about" element={<h1>This is our store</h1>} />
-            <Route path="/login" element={<Login/>} />
+            <Route path="/" element={<AllBooks />} />
+            <Route path="/about" element={<h1>This is our library</h1>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/books/:bookId" element={<Book />} />
           </Routes>
           <Footer />
         </LoginContext.Provider>
