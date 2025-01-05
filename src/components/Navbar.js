@@ -42,13 +42,18 @@ function Navbar() {
                 About
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/loans">
+                Loan Managment
+              </Link>
+            </li>
           </ul>
-
           {/* Centered Welcome Message */}
           {login && (
             <div className="d-flex justify-content-center w-100">
               <span className="navbar-text text-white">
-                Welcome, {login.username || 'User'}!, {login.is_admin ? '(admin)' : ''}
+                Welcome, {login.username || 'User'}!,{' '}
+                {login.is_admin ? '(admin)' : ''}
               </span>
             </div>
           )}

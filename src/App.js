@@ -9,6 +9,7 @@ import LoginContext from './LoginContext'
 import Login from './components/Login'
 import AllBooks from './components/AllBooks'
 import Book from './components/Book'
+import LoanManagment from './components/LoanManagment'
 
 function App() {
   const [login, setLogin] = useState('')
@@ -24,6 +25,7 @@ function App() {
             <Route path="/about" element={<h1>This is our library</h1>} />
             <Route path="/login" element={<Login />} />
             <Route path="/books/:bookId" element={<Book />} />
+            <Route path="/loans" element={<LoanManagment />} />
           </Routes>
           <Footer />
         </LoginContext.Provider>
