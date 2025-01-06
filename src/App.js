@@ -10,6 +10,8 @@ import Login from './components/Login'
 import AllBooks from './components/AllBooks'
 import Book from './components/Book'
 import LoanManagment from './components/LoanManagment'
+import Register from './components/Register'
+import BookManagment from './components/BookManagment'
 
 function App() {
   const [login, setLogin] = useState('')
@@ -26,6 +28,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/books/:bookId" element={<Book />} />
             <Route path="/loans" element={<LoanManagment />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/booksM" element={<BookManagment />} />
           </Routes>
           <Footer />
         </LoginContext.Provider>

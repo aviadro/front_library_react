@@ -13,10 +13,6 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        {/* Logo */}
-        <Link className="navbar-brand" to="/">
-          Logo
-        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -43,23 +39,38 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/loans">
+              <Link className="nav-link" aria-current="page" to="/loans">
                 Loan Managment
               </Link>
             </li>
+            {login?.is_admin && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/booksM">
+                  <i className="bi bi-person-fill"></i> Book Managment
+                </Link>
+              </li>
+            )}
           </ul>
           {/* Centered Welcome Message */}
           {login && (
             <div className="d-flex justify-content-center w-100">
               <span className="navbar-text text-white">
-                Welcome, {login.username || 'User'}!,{' '}
-                {login.is_admin ? '(admin)' : ''}
+                Welcome, {login.username || 'User'}!{' '}
+                {login.is_admin ? '(, admin)' : ''}
               </span>
             </div>
           )}
 
           {/* Right-aligned Login/Logout */}
           <ul className="navbar-nav ms-auto">
+            {login?.is_admin && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  <i className="bi bi-person-fill"></i> Register
+                </Link>
+              </li>
+            )}
+
             {login ? (
               <li className="nav-item">
                 <button onClick={logout} className="btn btn-dark">
