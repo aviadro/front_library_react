@@ -18,7 +18,7 @@ function LoanManagment() {
   }, [])
 
   useEffect(() => {
-    if (login.is_admin) {
+    if (login?.is_admin) {
       getLoans()
     }
     if (login & !login.is_admin) {

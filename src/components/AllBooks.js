@@ -24,7 +24,7 @@ function AllBooks() {
   }, [])
 
   useEffect(() => {
-    if (login.is_admin) {
+    if (login?.is_admin) {
       getAllLateLoans()
     }
     if (login) {
@@ -71,13 +71,9 @@ function AllBooks() {
     return books.filter(
       (book) =>
         book.title &&
-        book.title.toLowerCase().startsWith(
-          searchTitle.toLowerCase()
-        ) &&
+        book.title.toLowerCase().startsWith(searchTitle.toLowerCase()) &&
         book.author &&
-        book.author.toLowerCase().startsWith(
-          searchAuthor.toLowerCase()
-        )
+        book.author.toLowerCase().startsWith(searchAuthor.toLowerCase())
     )
   }
   const handleBookClick = (bookId) => {

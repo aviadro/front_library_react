@@ -63,7 +63,7 @@ function Navbar() {
             <div className="d-flex justify-content-center w-100">
               <span className="navbar-text text-white">
                 Welcome, {login.username || 'User'}!{' '}
-                {login.is_admin ? ', (admin)' : ''}
+                {login?.is_admin ? ', (Admin)' : ''}
               </span>
             </div>
           )}

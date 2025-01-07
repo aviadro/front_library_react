@@ -61,3 +61,10 @@
 .no-wrap {
   white-space: nowrap;
 }
+
+.custom-jumbotron {
+  background-image: url('https://library-django-backend-project.onrender.com/static/images/jumbotron.png');
+  background-size: cover;
+  background-position: center;
+  color: white; /* Optional: Adjust text color if needed */
+}
