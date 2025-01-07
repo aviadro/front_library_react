@@ -46,14 +46,14 @@ function Navbar() {
             {login?.is_admin && (
               <li className="nav-item">
                 <Link className="nav-link no-wrap" to="/booksM">
-                  <i className="bi bi-person-fill"></i> Book Managment
+                  <i className="bi bi-person-fill"></i> Book Managment (Admin)
                 </Link>
               </li>
             )}
             {login?.is_admin && (
               <li className="nav-item">
                 <Link className="nav-link no-wrap" to="/customers">
-                  <i className="bi bi-person-fill"></i> Customer Managment
+                  <i className="bi bi-person-fill"></i> Customer Managment (Admin)
                 </Link>
               </li>
             )}
