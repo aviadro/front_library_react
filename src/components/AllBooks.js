@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode'
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LoginContext from '../LoginContext'
-import LateLoans from './LateLoans';
+import LateLoans from './LateLoans'
 
 function AllBooks() {
   const navigate = useNavigate()
@@ -71,14 +71,12 @@ function AllBooks() {
     return books.filter(
       (book) =>
         book.title &&
-        book.title.startsWith(
-          searchTitle.charAt(0).toUpperCase() +
-            searchTitle.slice(1).toLowerCase()
+        book.title.toLowerCase().startsWith(
+          searchTitle.toLowerCase()
         ) &&
         book.author &&
-        book.author.startsWith(
-          searchAuthor.charAt(0).toUpperCase() +
-            searchAuthor.slice(1).toLowerCase()
+        book.author.toLowerCase().startsWith(
+          searchAuthor.toLowerCase()
         )
     )
   }
@@ -94,6 +92,7 @@ function AllBooks() {
 
       {/* Late Loans Section */}
       <LateLoans login={login} />
+      <hr />
 
       {/* Search Inputs */}
       <div className="mt-4">
@@ -156,7 +155,7 @@ function AllBooks() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export default AllBooks

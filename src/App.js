@@ -12,6 +12,8 @@ import Book from './components/Book'
 import LoanManagment from './components/LoanManagment'
 import Register from './components/Register'
 import BookManagment from './components/BookManagment'
+import About from './components/About'
+import Customers from './components/Customers'
 
 function App() {
   const [login, setLogin] = useState('')
@@ -24,12 +26,13 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<AllBooks />} />
-            <Route path="/about" element={<h1>This is our library</h1>} />
+            <Route path="/about" element={<About />}/>
             <Route path="/login" element={<Login />} />
             <Route path="/books/:bookId" element={<Book />} />
             <Route path="/loans" element={<LoanManagment />} />
             <Route path="/register" element={<Register />} />
             <Route path="/booksM" element={<BookManagment />} />
+            <Route path="/customers" element={<Customers />} />
           </Routes>
           <Footer />
         </LoginContext.Provider>

@@ -58,3 +58,6 @@
   margin-top: 10px; /* Add space between the title and subtitle */
 }
 
+.no-wrap {
+  white-space: nowrap;
+}

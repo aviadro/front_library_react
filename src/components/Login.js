@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import LoginContext from '../LoginContext'
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 
 function Login() {
   const [username, setName] = useState('')
@@ -11,40 +11,49 @@ function Login() {
   const { login, setLogin } = useContext(LoginContext)
 
   async function handleLogin(event) {
-    event.preventDefault(); // Prevent page refresh
-  
+    event.preventDefault() // Prevent page refresh
+
     try {
-      const response = await axios.post('https://library-django-backend-project.onrender.com/login', {
-        username,
-        password,
-      });
-  
-      console.log('Response Data:', response.data); // Debugging
-  
-      if (response.status === 200) {
-        const token = response.data.access;
-        if (!token || typeof token !== 'string') {
-          console.error('Invalid token:', token);
-          alert('Login failed. Invalid token received.');
-          return;
+      const response = await axios.post(
+        'https://library-django-backend-project.onrender.com/login',
+        {
+          username,
+          password,
         }
-  
-        const decodedToken = jwtDecode(token); // Decode the JWT
-        console.log('Decoded Token:', decodedToken);
-  
-        localStorage.setItem('token', token); // Save token to localStorage
-        setLogin(decodedToken); // Update LoginContext
-        navigate('/'); // Redirect to home page
+      )
+
+      console.log('Response Data:', response.data) // Debugging
+
+      if (response.status === 200) {
+        const token = response.data.access
+        if (!token || typeof token !== 'string') {
+          console.error('Invalid token:', token)
+          alert('Login failed. Invalid token received.')
+          return
+        }
+
+        const decodedToken = jwtDecode(token) // Decode the JWT
+        console.log('Decoded Token:', decodedToken)
+
+        // Check if the user is active
+        if (!decodedToken.is_active) {
+          console.error('User is not active:', decodedToken)
+          alert('Login failed. Your account is inactive.')
+          return
+        }
+
+        localStorage.setItem('token', token) // Save token to localStorage
+        setLogin(decodedToken) // Update LoginContext
+        navigate('/') // Redirect to home page
       } else {
-        console.error('Login failed');
-        alert('Login failed. Please try again.');
+        console.error('Login failed')
+        alert('Login failed. Please try again.')
       }
     } catch (error) {
-      console.error('Error during login:', error);
-      alert('An error occurred. Please try again.');
+      console.error('Error during login:', error)
+      alert('An error occurred. Please try again.')
     }
   }
-  
 
   return (
     <div>

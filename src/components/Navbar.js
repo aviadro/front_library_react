@@ -39,14 +39,21 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/loans">
+              <Link className="nav-link no-wrap" aria-current="page" to="/loans">
                 Loan Managment
               </Link>
             </li>
             {login?.is_admin && (
               <li className="nav-item">
-                <Link className="nav-link" to="/booksM">
+                <Link className="nav-link no-wrap" to="/booksM">
                   <i className="bi bi-person-fill"></i> Book Managment
+                </Link>
+              </li>
+            )}
+            {login?.is_admin && (
+              <li className="nav-item">
+                <Link className="nav-link no-wrap" to="/customers">
+                  <i className="bi bi-person-fill"></i> Customer Managment
                 </Link>
               </li>
             )}
@@ -56,7 +63,7 @@ function Navbar() {
             <div className="d-flex justify-content-center w-100">
               <span className="navbar-text text-white">
                 Welcome, {login.username || 'User'}!{' '}
-                {login.is_admin ? '(, admin)' : ''}
+                {login.is_admin ? ', (admin)' : ''}
               </span>
             </div>
           )}
