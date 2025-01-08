@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom' // Import Link and useNavigate
 import axios from 'axios'
 import LoginContext from '../LoginContext'
 
@@ -9,7 +9,8 @@ const Book = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [message, setMessage] = useState(null) // For success or error messages
-  const { login, setLogin } = useContext(LoginContext)
+  const { login } = useContext(LoginContext)
+  const navigate = useNavigate() // For programmatic navigation
 
   useEffect(() => {
     // Fetch the book details from the backend
@@ -69,22 +70,28 @@ const Book = () => {
             {book.isActive ? 'Available' : 'Not Available'}
           </p>
           <p>
-            <p>
-              <strong>Duration time:</strong>{' '}
-              {book.book_type === 1
-                ? '10 days'
-                : book.book_type === 2
-                ? '5 days'
-                : book.book_type === 3
-                ? '2 days'
-                : 'Not Available'}
-            </p>
+            <strong>Duration time:</strong>{' '}
+            {book.book_type === 1
+              ? '10 days'
+              : book.book_type === 2
+              ? '5 days'
+              : book.book_type === 3
+              ? '2 days'
+              : 'Not Available'}
           </p>
-          {book.isActive && (
-            <button className="btn btn-primary mt-3" onClick={handleLoanBook}>
-              Loan this Book
+          <div className="d-flex gap-3 mt-3">
+            {book.isActive && (
+              <button className="btn btn-primary" onClick={handleLoanBook}>
+                Loan this Book
+              </button>
+            )}
+            <button
+              className="btn btn-secondary"
+              onClick={() => navigate('/')}
+            >
+              Back to Book List
             </button>
-          )}
+          </div>
           {message && (
             <p
               className={`mt-3 ${
