@@ -81,9 +81,14 @@ function AllBooks() {
   }
 
   return (
-    <>
-      <div className="container mt-5">
-        <h2 className="mb-4">Library Books</h2>
+    <div div className="all-books-background">
+      <div className="container mt-5 ">
+        <h2
+          className="mb-4"
+          style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+        >
+          Library Books
+        </h2>
       </div>
 
       {/* Late Loans Section */}
@@ -92,7 +97,7 @@ function AllBooks() {
 
       {/* Search Inputs */}
       <div className="mt-4">
-        <label>
+        <label style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
           &nbsp;&nbsp;&nbsp;Search by Title
           <input
             className="input-field"
@@ -100,7 +105,7 @@ function AllBooks() {
             onChange={(e) => setSearchTitle(String(e.target.value))}
           />
         </label>
-        <label>
+        <label style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
           &nbsp;&nbsp;&nbsp;Search by Author
           <input
             className="input-field"
@@ -113,7 +118,12 @@ function AllBooks() {
       {/* Books Section */}
       <div className="table-responsive">
         <div className="container mt-4">
-          <h1 className="mb-4">Books</h1>
+          <h1
+            className="mb-4"
+            style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+          >
+            Our Books
+          </h1>
           <div className="row">
             {updatedBooks().map((book) => (
               <div className="col-md-4 mb-4" key={book.id}>
@@ -150,7 +160,7 @@ function AllBooks() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

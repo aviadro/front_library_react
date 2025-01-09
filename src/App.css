@@ -68,3 +68,10 @@
   background-position: center;
   color: white; /* Optional: Adjust text color if needed */
 }
+
+.all-books-background {
+  background-image: url('https://library-django-backend-project.onrender.com/static/images/background.png');
+  background-size: cover;
+  background-position: center;
+  color: white; /* Optional: Adjust text color if needed */
+}
