@@ -1,57 +1,62 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    city: "",
-    age: "",
-    phone: "",
+    username: '',
+    email: '',
+    password: '',
+    city: '',
+    age: '',
+    phone: '',
     is_active: false,
-  });
+  })
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('')
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked } = e.target
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+      [name]: type === 'checkbox' ? checked : value,
+    })
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       const response = await axios.post(
-        "https://library-django-backend-project.onrender.com/customers/register",
+        'https://library-django-backend-project.onrender.com/customers/register',
         formData
-      );
-      setMessage("Registration successful!");
+      )
+      setMessage('Registration successful!')
       setFormData({
-        username: "",
-        email: "",
-        password: "",
-        city: "",
-        age: "",
-        phone: "",
+        username: '',
+        email: '',
+        password: '',
+        city: '',
+        age: '',
+        phone: '',
         is_active: false,
-      });
+      })
     } catch (error) {
-      setMessage("Registration failed. Please try again.");
-      console.error(error);
+      setMessage('Registration failed. Please try again.')
+      console.error(error)
     }
-  };
+  }
 
   return (
     <div className="container mt-5">
-      <h2>Register</h2>
+      <h2 style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
+        Register
+      </h2>
       {message && <p className="alert alert-info">{message}</p>}
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div
+          className="mb-3"
+          style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+        >
           <label htmlFor="username" className="form-label">
             Username
           </label>
@@ -65,7 +70,10 @@ const Register = () => {
             required
           />
         </div>
-        <div className="mb-3">
+        <div
+          className="mb-3"
+          style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+        >
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -79,7 +87,10 @@ const Register = () => {
             required
           />
         </div>
-        <div className="mb-3">
+        <div
+          className="mb-3"
+          style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+        >
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -93,7 +104,10 @@ const Register = () => {
             required
           />
         </div>
-        <div className="mb-3">
+        <div
+          className="mb-3"
+          style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+        >
           <label htmlFor="city" className="form-label">
             City
           </label>
@@ -106,7 +120,10 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="mb-3">
+        <div
+          className="mb-3"
+          style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+        >
           <label htmlFor="age" className="form-label">
             Age
           </label>
@@ -119,7 +136,10 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="mb-3">
+        <div
+          className="mb-3"
+          style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+        >
           <label htmlFor="phone" className="form-label">
             Phone
           </label>
@@ -132,7 +152,10 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="form-check mb-3">
+        <div
+          className="form-check mb-3"
+          style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+        >
           <input
             type="checkbox"
             className="form-check-input"
@@ -150,7 +173,7 @@ const Register = () => {
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
