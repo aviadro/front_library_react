@@ -81,7 +81,7 @@ function AllBooks() {
   }
 
   return (
-    <div div className="all-books-background">
+    <div div className="">
       <div className="container mt-5 ">
         <h2
           className="mb-4"

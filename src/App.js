@@ -23,18 +23,20 @@ function App() {
       <BrowserRouter>
         <LoginContext.Provider value={{ login, setLogin }}>
           <Jumbotron />
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<AllBooks />} />
-            <Route path="/about" element={<About />}/>
-            <Route path="/login" element={<Login />} />
-            <Route path="/books/:bookId" element={<Book />} />
-            <Route path="/loans" element={<LoanManagment />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/booksM" element={<BookManagment />} />
-            <Route path="/customers" element={<Customers />} />
-          </Routes>
-          <Footer />
+          <div className="library-background">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<AllBooks />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/books/:bookId" element={<Book />} />
+              <Route path="/loans" element={<LoanManagment />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/booksM" element={<BookManagment />} />
+              <Route path="/customers" element={<Customers />} />
+            </Routes>
+            <Footer />
+          </div>
         </LoginContext.Provider>
       </BrowserRouter>
     </>

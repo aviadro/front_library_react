@@ -91,8 +91,13 @@ function Customers() {
     }
   }
   return (
-    <div className="container mt-5">
-      <h2 className="mb-4">Customers List</h2>
+    <div className="container mt-5 admin-background">
+      <h2
+        className="mb-4"
+        style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+      >
+        Customers List
+      </h2>
       <table className="table table-striped">
         <thead>
           <tr>

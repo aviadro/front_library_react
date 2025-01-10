@@ -1,13 +1,13 @@
-import axios from "axios";
-import React from "react";
+import axios from 'axios'
+import React from 'react'
 
 const LoansDisplay = ({ loans, onReturn }) => {
-  const { active_loans, inactive_loans } = loans;
+  const { active_loans, inactive_loans } = loans
 
   // Handler for returning a book
   const handleReturn = (loanId) => {
-    const authToken = localStorage.getItem("token");
-  
+    const authToken = localStorage.getItem('token')
+
     axios
       .post(
         `https://library-django-backend-project.onrender.com/loans/return_book`,
@@ -15,23 +15,29 @@ const LoansDisplay = ({ loans, onReturn }) => {
         { headers: { Authorization: `Bearer ${authToken}` } } // Headers
       )
       .then((response) => {
-        alert("Book returned successfully!");
-        window.location.reload(); // Refresh the page to update the loan list
+        alert('Book returned successfully!')
+        window.location.reload() // Refresh the page to update the loan list
       })
       .catch((error) => {
-        console.error("Error returning book:", error);
-        alert("Failed to return the book. Please try again.");
-      });
-  };
-  
+        console.error('Error returning book:', error)
+        alert('Failed to return the book. Please try again.')
+      })
+  }
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4">Loans</h2>
+      <h2
+        className="mb-4"
+        style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+      >
+        Loans
+      </h2>
 
       {/* Active Loans Section */}
       <div className="mb-5">
-        <h3>Active Loans</h3>
+        <h3 style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
+          Active Loans
+        </h3>
         {active_loans.length > 0 ? (
           <div className="row">
             {active_loans.map((loan) => (
@@ -43,20 +49,20 @@ const LoansDisplay = ({ loans, onReturn }) => {
                       <strong>Author:</strong> {loan.book.author} <br />
                       <strong>Borrower:</strong> {loan.customer.username} <br />
                       <strong>Loan Date:</strong> {loan.loan_date} <br />
-                      <strong>Due Date:</strong>{" "}
+                      <strong>Due Date:</strong>{' '}
                       <span
                         style={{
                           color:
                             new Date(loan.due_date) < new Date()
-                              ? "red"
-                              : "inherit",
+                              ? 'red'
+                              : 'inherit',
                         }}
                       >
                         {loan.due_date}
-                      </span>{" "}
+                      </span>{' '}
                       <br />
-                      <strong>Status:</strong>{" "}
-                      {loan.is_active ? "Active" : "Returned"} <br />
+                      <strong>Status:</strong>{' '}
+                      {loan.is_active ? 'Active' : 'Returned'} <br />
                     </p>
                     <button
                       className="btn btn-primary mt-2"
@@ -76,7 +82,9 @@ const LoansDisplay = ({ loans, onReturn }) => {
 
       {/* Inactive Loans Section */}
       <div>
-        <h3>Inactive Loans</h3>
+        <h3 style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
+          Inactive Loans
+        </h3>
         {inactive_loans.length > 0 ? (
           <div className="row">
             {inactive_loans.map((loan) => (
@@ -90,8 +98,8 @@ const LoansDisplay = ({ loans, onReturn }) => {
                       <strong>Loan Date:</strong> {loan.loan_date} <br />
                       <strong>Due Date:</strong> {loan.due_date} <br />
                       <strong>Return Date:</strong> {loan.return_date} <br />
-                      <strong>Status:</strong>{" "}
-                      {loan.is_active ? "Active" : "Returned"} <br />
+                      <strong>Status:</strong>{' '}
+                      {loan.is_active ? 'Active' : 'Returned'} <br />
                     </p>
                   </div>
                 </div>
@@ -103,7 +111,7 @@ const LoansDisplay = ({ loans, onReturn }) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoansDisplay;
+export default LoansDisplay

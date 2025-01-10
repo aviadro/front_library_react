@@ -91,7 +91,7 @@ function BookManagment() {
               book.book_type
             )
           ) || book.book_type
-        
+
         const updatedBook = {
           title: updatedTitle,
           author: updatedAuthor,
@@ -154,8 +154,13 @@ function BookManagment() {
   }
 
   return (
-    <div className="container my-4">
-      <h1 className="text-center mb-4">Book List</h1>
+    <div className="container my-4 admin-background">
+      <h1
+        className="text-center mb-4"
+        style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
+      >
+        Book List
+      </h1>
       <table className="table table-bordered table-striped">
         <thead className="table-dark">
           <tr>

@@ -49,7 +49,9 @@ const Book = () => {
 
   return (
     <div className="container mt-4">
-      <h1>{book.title}</h1>
+      <h1 style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
+        {book.title}
+      </h1>
       <div className="row">
         <div className="col-md-4">
           <img
@@ -60,16 +62,20 @@ const Book = () => {
           />
         </div>
         <div className="col-md-8">
-          <h5>Author: {book.author}</h5>
-          <p>{book.description}</p>
-          <p>
+          <h5 style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
+            Author: {book.author}
+          </h5>
+          <p style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
+            {book.description}
+          </p>
+          <p style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
             <strong>Published Year:</strong> {book.published_year}
           </p>
-          <p>
+          <p style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
             <strong>Status:</strong>{' '}
             {book.isActive ? 'Available' : 'Not Available'}
           </p>
-          <p>
+          <p style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
             <strong>Duration time:</strong>{' '}
             {book.book_type === 1
               ? '10 days'
@@ -85,10 +91,7 @@ const Book = () => {
                 Loan this Book
               </button>
             )}
-            <button
-              className="btn btn-secondary"
-              onClick={() => navigate('/')}
-            >
+            <button className="btn btn-secondary" onClick={() => navigate('/')}>
               Back to Book List
             </button>
           </div>
