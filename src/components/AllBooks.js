@@ -130,7 +130,13 @@ function AllBooks() {
                 <div
                   className="card h-100"
                   onClick={() => handleBookClick(book.id)}
-                  style={{ cursor: 'pointer' }}
+                  style={{
+                    cursor: 'pointer', // Disable pointer on unavailable books
+                    filter: book.isActive
+                      ? 'none'
+                      : 'grayscale(10%) brightness(80%)', // Dim the card if not available
+                    opacity: book.isActive ? 1 : 0.6, // Reduce opacity for unavailable books
+                  }}
                 >
                   <img
                     src={`https://library-django-backend-project.onrender.com/static${book.image}`}
