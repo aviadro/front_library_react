@@ -164,9 +164,6 @@ const Register = () => {
             checked={formData.is_active}
             onChange={handleChange}
           />
-          <label className="form-check-label" htmlFor="is_active">
-            Active
-          </label>
         </div>
         <button type="submit" className="btn btn-primary">
           Register
