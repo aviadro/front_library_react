@@ -141,8 +141,10 @@ function AllBooks() {
                   <div className="card-body">
                     <h5 className="card-title">{book.title}</h5>
                     <p className="card-text">
-                      <strong>Author:</strong> {book.author} <br />
-                      <strong>Status:</strong>{' '}
+                      <span style={{ color: book.isActive ? 'green' : 'red' }}>
+                        {book.isActive ? 'Available' : 'Not Available'}
+                      </span>{' '}
+                      <br /> <strong>Status:</strong>{' '}
                       {book.isActive ? 'Available' : 'Not Available'} <br />
                       <strong>Duration time:</strong>{' '}
                       {book.book_type === 1
