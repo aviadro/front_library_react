@@ -155,16 +155,7 @@ const Register = () => {
         <div
           className="form-check mb-3"
           style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}
-        >
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="is_active"
-            name="is_active"
-            checked={formData.is_active}
-            onChange={handleChange}
-          />
-        </div>
+        ></div>
         <button type="submit" className="btn btn-primary">
           Register
         </button>
