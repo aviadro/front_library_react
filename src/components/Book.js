@@ -34,18 +34,25 @@ const Book = () => {
 
   const handleLoanBook = async () => {
     try {
-      const authToken = localStorage.getItem('token')
-      console.log(authToken)
+      const authToken = localStorage.getItem('token');
+      console.log(authToken);
+      
       const response = await axios.post(
         `https://library-django-backend-project.onrender.com/loans/loan_book`,
         { book_id: bookId, customer_id: login.user_id }, // Request body
-        { headers: { Authorization: `Bearer ${authToken}` } } // Headers as the second argument
-      )
-      setMessage('Book loaned successfully!')
+        { headers: { Authorization: `Bearer ${authToken}` } } // Headers
+      );
+      
+      setMessage('Book loaned successfully!');
     } catch (err) {
-      setMessage('Failed to loan the book. Please try again.')
+      if (err.response && err.response.status === 401) {
+        setMessage('Failed to loan the book. Need to login first.');
+      } else {
+        setMessage('Failed to loan the book. Please try again.');
+      }
     }
   }
+  
 
   return (
     <div className="container mt-4">
