@@ -39,7 +39,11 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link no-wrap" aria-current="page" to="/loans">
+              <Link
+                className="nav-link no-wrap"
+                aria-current="page"
+                to="/loans"
+              >
                 Loan Managment
               </Link>
             </li>
@@ -53,7 +57,8 @@ function Navbar() {
             {login?.is_admin && (
               <li className="nav-item">
                 <Link className="nav-link no-wrap" to="/customers">
-                  <i className="bi bi-person-fill"></i> Customer Managment (Admin)
+                  <i className="bi bi-person-fill"></i> Customer Managment
+                  (Admin)
                 </Link>
               </li>
             )}
@@ -80,7 +85,13 @@ function Navbar() {
 
             {login ? (
               <li className="nav-item">
-                <button onClick={logout} className="btn btn-dark">
+                <button
+                  onClick={() => {
+                    logout() // Call the logout function
+                    window.location.reload() // Refresh the page
+                  }}
+                  className="btn btn-dark"
+                >
                   Logout
                 </button>
               </li>
