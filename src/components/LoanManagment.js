@@ -40,7 +40,6 @@ function LoanManagment() {
       })
   }
   function getMyLoans() {
-    console.log("******")
     console.log('login', login)
     if (!login) return
     const authToken = localStorage.getItem('token')
