@@ -1,8 +1,46 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const LoansDisplay = ({ loans, onReturn }) => {
   const { active_loans, inactive_loans } = loans
+
+  // Function to fetch Hebrew date from Hebcal API
+  const fetchHebrewDate = async (date) => {
+    try {
+      const response = await axios.get(
+        `https://www.hebcal.com/hebcal?v=1&cfg=json&start=${date}&end=${date}&d=on`
+      )
+      const heDateParts = response.data.items?.[0]?.heDateParts
+      if (heDateParts) {
+        const { y, m, d } = heDateParts
+        return `${d}-${m}-${y}` // Format the Hebrew date as "year-month-day"
+      }
+      return 'Unavailable'
+    } catch (error) {
+      console.error('Error fetching Hebrew date:', error)
+      return 'Error'
+    }
+  }
+
+  // State to store Hebrew dates for active and inactive loans
+  const [hebrewDates, setHebrewDates] = useState({
+    loanDates: {},
+    dueDates: {}
+  })
+
+  // Fetch Hebrew dates for all loans
+  useEffect(() => {
+    const fetchDates = async () => {
+      const loanDates = {}
+      const dueDates = {}
+      for (const loan of [...active_loans, ...inactive_loans]) {
+        loanDates[loan.id] = await fetchHebrewDate(loan.loan_date)
+        dueDates[loan.id] = await fetchHebrewDate(loan.due_date)
+      }
+      setHebrewDates({ loanDates, dueDates })
+    }
+    fetchDates()
+  }, [active_loans, inactive_loans])
 
   // Handler for returning a book
   const handleReturn = (loanId) => {
@@ -14,7 +52,7 @@ const LoansDisplay = ({ loans, onReturn }) => {
         { loan_id: loanId }, // Request body
         { headers: { Authorization: `Bearer ${authToken}` } } // Headers
       )
-      .then((response) => {
+      .then(() => {
         alert('Book returned successfully!')
         window.location.reload() // Refresh the page to update the loan list
       })
@@ -48,19 +86,12 @@ const LoansDisplay = ({ loans, onReturn }) => {
                     <p className="card-text">
                       <strong>Author:</strong> {loan.book.author} <br />
                       <strong>Borrower:</strong> {loan.customer.username} <br />
-                      <strong>Loan Date:</strong> {loan.loan_date} <br />
-                      <strong>Due Date:</strong>{' '}
-                      <span
-                        style={{
-                          color:
-                            new Date(loan.due_date) < new Date()
-                              ? 'red'
-                              : 'inherit',
-                        }}
-                      >
-                        {loan.due_date}
-                      </span>{' '}
-                      <br />
+                      <strong>Loan Date (Gregorian):</strong> {loan.loan_date} <br />
+                      <strong>Loan Date (Hebrew):</strong>{' '}
+                      {hebrewDates.loanDates[loan.id] || 'Loading...'} <br />
+                      <strong>Due Date (Gregorian):</strong> {loan.due_date} <br />
+                      <strong>Due Date (Hebrew):</strong>{' '}
+                      {hebrewDates.dueDates[loan.id] || 'Loading...'} <br />
                       <strong>Status:</strong>{' '}
                       {loan.is_active ? 'Active' : 'Returned'} <br />
                     </p>
@@ -95,8 +126,12 @@ const LoansDisplay = ({ loans, onReturn }) => {
                     <p className="card-text">
                       <strong>Author:</strong> {loan.book.author} <br />
                       <strong>Borrower:</strong> {loan.customer.username} <br />
-                      <strong>Loan Date:</strong> {loan.loan_date} <br />
-                      <strong>Due Date:</strong> {loan.due_date} <br />
+                      <strong>Loan Date (Gregorian):</strong> {loan.loan_date} <br />
+                      <strong>Loan Date (Hebrew):</strong>{' '}
+                      {hebrewDates.loanDates[loan.id] || 'Loading...'} <br />
+                      <strong>Due Date (Gregorian):</strong> {loan.due_date} <br />
+                      <strong>Due Date (Hebrew):</strong>{' '}
+                      {hebrewDates.dueDates[loan.id] || 'Loading...'} <br />
                       <strong>Return Date:</strong> {loan.return_date} <br />
                       <strong>Status:</strong>{' '}
                       {loan.is_active ? 'Active' : 'Returned'} <br />
