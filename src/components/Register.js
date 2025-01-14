@@ -9,7 +9,6 @@ const Register = () => {
     city: '',
     age: '',
     phone: '',
-    is_active: false,
   })
 
   const [message, setMessage] = useState('')
@@ -38,7 +37,6 @@ const Register = () => {
         city: '',
         age: '',
         phone: '',
-        is_active: false,
       })
     } catch (error) {
       setMessage('Registration failed. Please try again.')
