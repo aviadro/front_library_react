@@ -149,7 +149,7 @@ function AllBooks() {
                     <p className="card-text">
                       <strong>Author:</strong> {book.author} <br />
                       <strong>Status:</strong>{' '}
-                      <span style={{ color: book.isActive ? 'green' : 'red' }}>
+                      <span style={{ color: book.isActive ? 'green' : 'red' , fontWeight:"bold"}}>
                         {book.isActive ? 'Available' : 'Not Available'}
                       </span>{' '}
                       <br /> <strong>Duration time:</strong>{' '}
