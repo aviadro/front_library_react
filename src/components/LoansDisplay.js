@@ -25,7 +25,8 @@ const LoansDisplay = ({ loans, onReturn }) => {
   // State to store Hebrew dates for active and inactive loans
   const [hebrewDates, setHebrewDates] = useState({
     loanDates: {},
-    dueDates: {}
+    dueDates: {},
+    returnDates: {}
   })
 
   // Fetch Hebrew dates for all loans
@@ -33,11 +34,15 @@ const LoansDisplay = ({ loans, onReturn }) => {
     const fetchDates = async () => {
       const loanDates = {}
       const dueDates = {}
+      const returnDates = {}
       for (const loan of [...active_loans, ...inactive_loans]) {
         loanDates[loan.id] = await fetchHebrewDate(loan.loan_date)
         dueDates[loan.id] = await fetchHebrewDate(loan.due_date)
+        if (loan.return_date) { // Check if return_date exists
+          returnDates[loan.id] = await fetchHebrewDate(loan.return_date)
+        }
       }
-      setHebrewDates({ loanDates, dueDates })
+      setHebrewDates({ loanDates, dueDates, returnDates  })
     }
     fetchDates()
   }, [active_loans, inactive_loans])
@@ -114,7 +119,7 @@ const LoansDisplay = ({ loans, onReturn }) => {
       {/* Inactive Loans Section */}
       <div>
         <h3 style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
-          Inactive Loans
+          Inactive Loans (History)
         </h3>
         {inactive_loans.length > 0 ? (
           <div className="row">
@@ -132,7 +137,8 @@ const LoansDisplay = ({ loans, onReturn }) => {
                       <strong>Due Date (Gregorian):</strong> {loan.due_date} <br />
                       <strong>Due Date (Hebrew):</strong>{' '}
                       {hebrewDates.dueDates[loan.id] || 'Loading...'} <br />
-                      <strong>Return Date:</strong> {loan.return_date} <br />
+                      <strong>Return Date (Gregorian):</strong> {loan.return_date || 'N/A'} <br />
+                      <strong>Return Date (Hebrew):</strong> {hebrewDates.returnDates[loan.id] || 'Loading...'} <br />
                       <strong>Status:</strong>{' '}
                       {loan.is_active ? 'Active' : 'Returned'} <br />
                     </p>
