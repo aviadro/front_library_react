@@ -119,7 +119,7 @@ const LoansDisplay = ({ loans, onReturn }) => {
       {/* Inactive Loans Section */}
       <div>
         <h3 style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold' }}>
-          Inactive Loans (History)
+          Inactive Loans records (History)
         </h3>
         {inactive_loans.length > 0 ? (
           <div className="row">
